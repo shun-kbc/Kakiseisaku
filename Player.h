@@ -11,24 +11,34 @@ class Player : Input{
 	int cnt;
 	int cnt_limit;
 	bool turn = false; // true:左に向く false:右に向く
+	bool old_turn = false;
+	bool slide_turn = false;
 
-	int time;
-	int stop_time;
+	double time;
+	double wtor_time;
+	double stop_time;
+	double stop_max;
+	double slid_time;
 
-	float speed;
+	double speed;
+	double now_speed;
 	float moveX;
-	float p_posX; //プレイヤーのポジション
-	float now_posX;
-	int N;
+	double p_posX; //プレイヤーのポジション
+	double now_posX;
+	//int N;
 	bool dash;
+	bool walk;
 	bool idle;
 
 	void Turn(); //振り向き処理
 	void Walk(); //歩き
 	void Dash(); //走り
 	void Stop();
+	void SlideTurn();
 	void ChangeImage(); //画像切り替え処理
 	void ShowDebug(); //デバッグ表示処理
+
+	double InCubic(double t, double totaltime, double max = 1.0, double min = 0.0);
 public:
 	void Player_Initialize();//初期化
 	void Player_Finalize();//終了処理
